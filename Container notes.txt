@@ -1,0 +1,32 @@
+
+Questions:
+	- What is the hostname or  host exactly in Linux context
+	- why we can't set the hostname before?
+	- How namespaces works
+	- How cgroup works
+	- When os.getpid() returns child process id then how is cgroup.procs have pid from kernel's perspective
+
+How actual docker works:
+	- Docker Daemon is the docker management tool that actually creates and runs these containers
+
+To do:
+	- update so that copy directories commands runs only once
+	- Add functionality to log resources
+	- Test the container project for proper resource management using cgroups
+	- Provide functionality to configure cgroups
+	- Add virtual networks
+	
+
+Steps to run a container using this go program:
+	1: Run these commands in the Linux terminal to copy all the important files from original root to current root
+		mkdir -p /mnt/c/Projects/Containers/rootfs
+		rsync -av /bin /mnt/c/Projects/Containers/rootfs
+		rsync -av /lib /mnt/c/Projects/Containers/rootfs
+		rsync -av /lib64 /mnt/c/Projects/Containers/rootfs
+		rsync -av /usr/bin /mnt/c/Projects/Containers/rootfs
+		rsync -av /usr/lib /mnt/c/Projects/Containers/rootfs
+		rsync -av /usr/lib64 /mnt/c/Projects/Containers/rootfs
+		rsync -av /etc /mnt/c/Projects/Containers/rootfs
+	
+	2: Create folders proc and sys under tootfs. These folders creation part should be included in the go program in future
+	3: Run the main.go

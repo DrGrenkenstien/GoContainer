@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Check if an argument is provided
+if [ $# -eq 0 ]; then
+    echo "Please provide the rootfs path as an argument."
+    echo "Usage: $0 <rootfs_path>"
+    exit 1
+fi
+
+# Store the rootfs path from the argument
+rootfs="$1"
+
+# Create the rootfs directory
+mkdir -p "$rootfs"
+
+# Array of directories to sync
+dirs=("/bin" "/lib" "/lib64" "/usr/bin" "/usr/lib" "/usr/lib64" "/etc")
+
+# Loop through the directories and sync them
+for dir in "${dirs[@]}"; do
+    echo "Syncing $dir to $rootfs"
+    rsync -av "$dir" "$rootfs"
+done
+
+echo "All directories synced to $rootfs"
