@@ -11,7 +11,6 @@ How actual docker works:
 
 To do:
 	- update so that copy directories commands runs only once
-	- Add functionality to log resources
 	- Test the container project for proper resource management using cgroups
 	- Provide functionality to configure cgroups
 	- Add virtual networks
